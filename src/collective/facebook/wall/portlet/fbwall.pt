@@ -1,0 +1,102 @@
+<dl class="portlet twitterSearchPortlet"
+    i18n:domain="collective.twitter.search">
+
+    <dt class="portletHeader" tal:condition="view/getHeader">
+        <span class="portletTopLeft"></span>
+        <span tal:content="view/getHeader" />
+        <span class="portletTopRight"></span>
+    </dt>
+
+    <dd class="portletItem odd"
+        tal:define="results view/getSearchResults;
+                    toLocalizedTime nocall:context/@@plone/toLocalizedTime;"
+        tal:condition="results">
+        <div tal:repeat="result python:results.get('data', [])">
+
+            <tal:block define="type_link python: result.get('type') == u'link';
+                               type_status python: result.get('type') == u'status';
+                               loc_date python: toLocalizedTime(view.getDate(result.get('created_time')), long_format=1);
+                               link_url python:result.get('link', '');
+                               link_name python:result.get('name', '');
+                               status_msg python:result.get('message', '');
+                               comments python:result.get('comments', {});
+                               comments_count python:comments.get('count', 0);
+                               likes python:result.get('likes', {});
+                               likes_count python:likes.get('count', 0);">
+
+                <div tal:condition="type_link" class="statusUpdate link">
+                
+                    <p tal:content="loc_date" />
+                    
+                    <p>
+                        <a href="#"
+                        tal:attributes="href link_url">
+                        <span tal:content="link_name" />
+                        </a>
+                    </p>
+                    <p>
+                        <span i18n:translate=""
+                            i18n:domain="collective.facebook.wall">
+                            Comments:
+                        </span>
+                        <span tal:content="comments_count"/>
+                    </p>
+                    <p>
+                        <span i18n:translate=""
+                            i18n:domain="collective.facebook.wall">
+                            Likes:
+                        </span>
+                        <span tal:content="likes_count"/>
+                    </p>
+                </div>
+
+                <div tal:condition="type_status" class="statusUpdate status">
+                
+                    <p tal:content="loc_date" />
+                    
+                    <p>
+                        <span tal:content="status_msg" />
+                    </p>
+                    <p>
+                        <span i18n:translate=""
+                            i18n:domain="collective.facebook.wall">
+                            Comments:
+                        </span>
+                        <span tal:content="comments_count"/>
+                    </p>
+                    <p>
+                        <span i18n:translate=""
+                            i18n:domain="collective.facebook.wall">
+                            Likes:
+                        </span>
+                        <span tal:content="likes_count"/>
+                    </p>
+                </div>
+            </tal:block>
+            <!--
+            <a href="#"
+               tal:define="screen_name python:result.GetUser().GetScreenName()"
+               tal:attributes="href string:http://twitter.com/#!/${screen_name}">
+                <img src="#"
+                     tal:condition="view/data/show_avatars"
+                     tal:attributes="src python:result.GetUser().GetProfileImageUrl()"
+                     style="width:48px;height:48px"/>
+                <span tal:content="screen_name"/>
+            </a>
+            <span tal:replace="structure python:view.getTweet(result)"/>
+            <p tal:content="python:toLocalizedTime(view.getDate(result), long_format=1)"/>-->
+        </div>
+    </dd>
+
+    <dd class="portletFooter">
+        <span class="portletBottomLeft"></span>
+        <a href="#" tal:attributes="href view/getFacebookLink" target="_blank">
+            <span i18n:translate=""
+                  i18n:domain="collective.facebook.wall">
+                  View the full feed in Facebook
+            </span>
+        </a>
+        <span class="portletBottomRight"></span>
+    </dd>
+
+</dl>

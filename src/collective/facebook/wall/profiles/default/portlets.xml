@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<portlets
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="collective.facebook.wall">
+
+ <portlet title="Facebook wall Portlet"
+    addview="collective.facebook.wall.FacebookWallPortlet"
+    description="A portlet to show a wall feed from Facebook"
+    i18n:attributes="title; description">
+  <for interface="plone.app.portlets.interfaces.IColumn" />
+  <for interface="plone.app.portlets.interfaces.IDashboard" />
+ </portlet>
+
+ <!--
+ <assignment
+    manager="plone.leftcolumn"
+    category="context"
+    key="/"
+    type="collective.facebook.wall.TwitterSearchPortlet"
+    name="facebook-wall"
+        /> -->
+        
+</portlets>

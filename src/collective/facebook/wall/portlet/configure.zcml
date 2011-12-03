@@ -1,0 +1,17 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="collective.facebook.wall">
+
+     <plone:portlet
+         name="collective.facebook.wall.FacebookWallPortlet"
+         interface=".fbwall.IFacebookWallPortlet"
+         assignment=".fbwall.Assignment"
+         edit_permission="cmf.ManagePortal"
+         renderer=".fbwall.Renderer"
+         addview=".fbwall.AddForm"
+         editview=".fbwall.EditForm"
+         />
+        
+</configure>

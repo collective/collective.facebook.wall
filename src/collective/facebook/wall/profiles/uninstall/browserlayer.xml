@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<!-- Register the package-specific browser layer, so that it will be activated when this package is installed. -->
+<layers>
+    <layer name="collective.facebook.wall.layer"
+            interface="collective.facebook.wall.interfaces.IFacebookWallLayer" 
+            remove="True"/>
+</layers>
