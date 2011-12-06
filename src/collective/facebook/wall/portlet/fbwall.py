@@ -18,9 +18,12 @@ from zope.schema.interfaces import IContextSourceBinder
 from collective.facebook.wall import _
 from collective.facebook.wall.config import GRAPH_URL
 
+from plone.memoize import ram
+
 import DateTime
 import json
 import urllib
+import hashlib
 
 def FacebookAccounts(context):
     registry = getUtility(IRegistry)
@@ -42,6 +45,11 @@ def FacebookAccounts(context):
 
 alsoProvides(FacebookAccounts, IContextSourceBinder)
 
+
+def cache_key_simple(func, var):
+    return hashlib.md5(var.context.id).hexdigest()
+
+    
 class IFacebookWallPortlet(IPortletDataProvider):
     """A portlet
 
@@ -130,6 +138,7 @@ class Renderer(base.Renderer):
         """
         return self.data.header
 
+    @ram.cache(cache_key_simple)
     def getSearchResults(self):
         registry = getUtility(IRegistry)
         accounts = registry['collective.facebook.accounts']
