@@ -11,7 +11,7 @@
         tal:define="results view/getSearchResults;
                     toLocalizedTime nocall:context/@@plone/toLocalizedTime;"
         tal:condition="results">
-        <div tal:repeat="result python:results.get('data', [])">
+        <div tal:repeat="result results">
 
             <tal:block define="type_link python: result.get('type') == u'link';
                                type_status python: result.get('type') == u'status';
@@ -37,16 +37,18 @@
                     <p>
                         <span i18n:translate=""
                             i18n:domain="collective.facebook.wall">
-                            Comments:
+
+                        <span tal:content="comments_count"
+                              i18n:name="comments"/> comments.
                         </span>
-                        <span tal:content="comments_count"/>
                     </p>
                     <p>
                         <span i18n:translate=""
                             i18n:domain="collective.facebook.wall">
-                            Likes:
+
+                        <span tal:content="likes_count"
+                              i18n:name="likes_count"/> people like this.
                         </span>
-                        <span tal:content="likes_count"/>
                     </p>
                 </div>
 
@@ -60,16 +62,18 @@
                     <p>
                         <span i18n:translate=""
                             i18n:domain="collective.facebook.wall">
-                            Comments:
+
+                        <span tal:content="comments_count"
+                              i18n:name="comments"/> comments.
                         </span>
-                        <span tal:content="comments_count"/>
                     </p>
                     <p>
                         <span i18n:translate=""
                             i18n:domain="collective.facebook.wall">
-                            Likes:
+
+                        <span tal:content="likes_count"
+                              i18n:name="likes_count"/> people like this.
                         </span>
-                        <span tal:content="likes_count"/>
                     </p>
                 </div>
             </tal:block>

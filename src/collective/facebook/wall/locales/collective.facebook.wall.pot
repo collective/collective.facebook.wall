@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-12-02 22:27+0000\n"
+"POT-Creation-Date: 2011-12-06 00:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,19 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.facebook.wall\n"
 
+#: collective/facebook/wall/portlet/fbwall.pt:41
+msgid "${comments} comments."
+msgstr ""
+
+#: collective/facebook/wall/portlet/fbwall.pt:49
+msgid "${likes_count} people like this."
+msgstr ""
+
 #: collective/facebook/wall/profiles/default/portlets.xml
 msgid "A portlet to show a wall feed from Facebook"
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.pt:37
+#: collective/facebook/wall/portlet/fbwall.pt:63
 msgid "Comments:"
 msgstr ""
 
@@ -29,7 +37,7 @@ msgstr ""
 msgid "Facebook account"
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:105
+#: collective/facebook/wall/portlet/fbwall.py:112
 #: collective/facebook/wall/profiles/default/portlets.xml
 msgid "Facebook wall Portlet"
 msgstr ""
@@ -42,12 +50,20 @@ msgstr ""
 msgid "ID for the wall you are trying to fetch from. More info in: https://developers.facebook.com/docs/reference/api/"
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.pt:44
+#: collective/facebook/wall/portlet/fbwall.pt:70
 msgid "Likes:"
 msgstr ""
 
 #: collective/facebook/wall/portlet/fbwall.py:69
 msgid "Maximum results"
+msgstr ""
+
+#: collective/facebook/wall/portlet/fbwall.py:76
+msgid "Only show posts made by the wall owner."
+msgstr ""
+
+#: collective/facebook/wall/portlet/fbwall.py:75
+msgid "Show only from owner"
 msgstr ""
 
 #: collective/facebook/wall/portlet/fbwall.py:54
@@ -58,7 +74,7 @@ msgstr ""
 msgid "The maximum results number."
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.pt:93
+#: collective/facebook/wall/portlet/fbwall.pt:96
 msgid "View the full feed in Facebook"
 msgstr ""
 

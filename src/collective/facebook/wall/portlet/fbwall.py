@@ -72,6 +72,10 @@ class IFacebookWallPortlet(IPortletDataProvider):
                                default=20)
 
 
+    only_self = schema.Bool(title=_(u'Show only from owner'),
+                               description=_(u"Only show posts made by the wall owner."),
+                               required=False)
+
 class Assignment(base.Assignment):
     """Portlet assignment.
 
@@ -85,17 +89,20 @@ class Assignment(base.Assignment):
     fb_account = u""
     wall_id = u""
     max_results = 20
+    only_self = False
     
     def __init__(self,
                  fb_account,
                  wall_id,
                  max_results,
-                 header=u""):
+                 header=u"",
+                 only_self = False):
                      
         self.header = header
         self.fb_account = fb_account
         self.wall_id = wall_id
         self.max_results = max_results
+        self.only_self = only_self
 
     @property
     def title(self):
@@ -127,7 +134,7 @@ class Renderer(base.Renderer):
         registry = getUtility(IRegistry)
         accounts = registry['collective.facebook.accounts']
 
-        result = None
+        result = []
         if self.data.fb_account in accounts:
             access_token = accounts[self.data.fb_account]['access_token']
 
@@ -135,7 +142,34 @@ class Renderer(base.Renderer):
             params = access_token + '&limit=%s' % self.data.max_results
             url = GRAPH_URL % (wall, params)
 
-            result = json.load(urllib.urlopen(url))
+            query_result = json.load(urllib.urlopen(url))
+
+            # I wanted to do this using fql, but i couldn't
+            # Specificaly, i couldn't find a way to obtain links titles
+            # I managed to get this:
+            # /fql?q=SELECT+created_time,message,comments,likes,action_links,message_tags+FROM+stream+WHERE+filter_key+=+'owner'+AND+source_id+=+[uid]&access_token=
+            if self.data.only_self:
+                # Let's get the ID for the wall owner
+                uurl = GRAPH_URL % (self.data.wall_id, access_token)
+                uid = json.load(urllib.urlopen(uurl))['id']
+
+                # Now, let's iterate on each result until we have the amount
+                # we wanted
+                while len(result) < self.data.max_results:
+                    try:
+                        post = query_result['data'].pop()
+                    except IndexError:
+                        # If we are here, it means, we need to query for the
+                        # next page of results
+                        url = query_result['paging']['next']
+                        query_result = json.load(urllib.urlopen(url))
+                        post = query_result['data'].pop()
+
+                    if post['from']['id'] == uid:
+                        result.append(post)
+                    
+            else:
+                result = query_result['data']
 
         return result
 

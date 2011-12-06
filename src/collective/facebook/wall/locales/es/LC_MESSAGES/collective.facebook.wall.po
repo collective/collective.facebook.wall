@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2011-12-02 22:27+0000\n"
-"PO-Revision-Date: 2011-12-02 19:27-0300\n"
+"POT-Creation-Date: 2011-12-06 00:03+0000\n"
+"PO-Revision-Date: 2011-12-05 21:04-0300\n"
 "Last-Translator: Franco Pellegrini\n"
 "Language-Team: Spanish <>\n"
 "MIME-Version: 1.0\n"
@@ -18,11 +18,19 @@ msgstr ""
 "Language: es\n"
 "X-Generator: Lokalize 1.2\n"
 
+#: collective/facebook/wall/portlet/fbwall.pt:41
+msgid "${comments} comments."
+msgstr "${comments} commentarios."
+
+#: collective/facebook/wall/portlet/fbwall.pt:49
+msgid "${likes_count} people like this."
+msgstr "A ${likes_count} personas les gusta esto."
+
 #: collective/facebook/wall/profiles/default/portlets.xml
 msgid "A portlet to show a wall feed from Facebook"
 msgstr "Un portlet para mostrar mensajes en un muro de Facebook"
 
-#: collective/facebook/wall/portlet/fbwall.pt:37
+#: collective/facebook/wall/portlet/fbwall.pt:63
 msgid "Comments:"
 msgstr "Comentarios:"
 
@@ -30,7 +38,7 @@ msgstr "Comentarios:"
 msgid "Facebook account"
 msgstr "Cuenta de Facebook"
 
-#: collective/facebook/wall/portlet/fbwall.py:105
+#: collective/facebook/wall/portlet/fbwall.py:112
 #: collective/facebook/wall/profiles/default/portlets.xml
 msgid "Facebook wall Portlet"
 msgstr "Portlet de muro de Facebook"
@@ -47,13 +55,21 @@ msgstr ""
 "ID del muro del que se está intentando obtener el flujo. Más info en: "
 "https://developers.facebook.com/docs/reference/api/"
 
-#: collective/facebook/wall/portlet/fbwall.pt:44
+#: collective/facebook/wall/portlet/fbwall.pt:70
 msgid "Likes:"
 msgstr "Le gusta:"
 
 #: collective/facebook/wall/portlet/fbwall.py:69
 msgid "Maximum results"
 msgstr "Resultados máximos"
+
+#: collective/facebook/wall/portlet/fbwall.py:76
+msgid "Only show posts made by the wall owner."
+msgstr "Sólo mostrar mensajes hechos por el dueño del muro."
+
+#: collective/facebook/wall/portlet/fbwall.py:75
+msgid "Show only from owner"
+msgstr "Sólo mostrar del dueño"
 
 #: collective/facebook/wall/portlet/fbwall.py:54
 msgid "The header for the portlet. Leave empty for none."
@@ -63,7 +79,7 @@ msgstr "La cabecera del portlet. Dejar vacío para ninguna."
 msgid "The maximum results number."
 msgstr "El número de resultados máximos."
 
-#: collective/facebook/wall/portlet/fbwall.pt:93
+#: collective/facebook/wall/portlet/fbwall.pt:96
 msgid "View the full feed in Facebook"
 msgstr "Ir al flujo completo en Facebook"
 
