@@ -1,7 +1,9 @@
 Changelog
 =========
 
-0.1dev (unreleased)
--------------------
+1.0
+---
 
+- Added spanish internationalization [frapell]
+- Created a portlet that will show posts from a facebook wall [frapell]
 - Initial release
