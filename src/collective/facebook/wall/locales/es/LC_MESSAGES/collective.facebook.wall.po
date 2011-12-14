@@ -20,7 +20,7 @@ msgstr ""
 
 #: collective/facebook/wall/portlet/fbwall.pt:41
 msgid "${comments} comments."
-msgstr "${comments} commentarios."
+msgstr "${comments} comentarios."
 
 #: collective/facebook/wall/portlet/fbwall.pt:49
 msgid "${likes_count} people like this."
