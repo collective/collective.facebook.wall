@@ -1,12 +1,11 @@
-# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# Franco Pellegrini, 2011.
+# Franco Pellegrini <frapell@gmail.com>, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"POT-Creation-Date: 2011-12-06 00:03+0000\n"
-"PO-Revision-Date: 2011-12-05 21:04-0300\n"
-"Last-Translator: Franco Pellegrini\n"
-"Language-Team: Spanish <>\n"
+"Project-Id-Version: collective.facebook.wall\n"
+"POT-Creation-Date: 2011-12-24 15:24+0000\n"
+"PO-Revision-Date: 2011-12-24 09:27-0600\n"
+"Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
+"Language-Team: Spanish <https://github.com/collective>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,11 +17,11 @@ msgstr ""
 "Language: es\n"
 "X-Generator: Lokalize 1.2\n"
 
-#: collective/facebook/wall/portlet/fbwall.pt:41
+#: collective/facebook/wall/portlet/fbwall.pt:50
 msgid "${comments} comments."
 msgstr "${comments} comentarios."
 
-#: collective/facebook/wall/portlet/fbwall.pt:49
+#: collective/facebook/wall/portlet/fbwall.pt:42
 msgid "${likes_count} people like this."
 msgstr "A ${likes_count} personas les gusta esto."
 
@@ -30,65 +29,52 @@ msgstr "A ${likes_count} personas les gusta esto."
 msgid "A portlet to show a wall feed from Facebook"
 msgstr "Un portlet para mostrar mensajes en un muro de Facebook"
 
-#: collective/facebook/wall/portlet/fbwall.pt:63
-msgid "Comments:"
-msgstr "Comentarios:"
-
-#: collective/facebook/wall/portlet/fbwall.py:57
+#: collective/facebook/wall/portlet/fbwall.py:65
 msgid "Facebook account"
 msgstr "Cuenta de Facebook"
 
-#: collective/facebook/wall/portlet/fbwall.py:112
+#: collective/facebook/wall/portlet/fbwall.py:120
 #: collective/facebook/wall/profiles/default/portlets.xml
 msgid "Facebook wall Portlet"
 msgstr "Portlet de muro de Facebook"
 
-#: collective/facebook/wall/portlet/fbwall.py:53
+#: collective/facebook/wall/portlet/fbwall.py:61
 msgid "Header"
 msgstr "Cabecera"
 
-#: collective/facebook/wall/portlet/fbwall.py:63
-msgid ""
-"ID for the wall you are trying to fetch from. More info in: "
-"https://developers.facebook.com/docs/reference/api/"
-msgstr ""
-"ID del muro del que se está intentando obtener el flujo. Más info en: "
-"https://developers.facebook.com/docs/reference/api/"
+#: collective/facebook/wall/portlet/fbwall.py:71
+msgid "ID for the wall you are trying to fetch from. More info in: https://developers.facebook.com/docs/reference/api/"
+msgstr "ID del muro del que se está intentando obtener el flujo. Más información en: https://developers.facebook.com/docs/reference/api/"
 
-#: collective/facebook/wall/portlet/fbwall.pt:70
-msgid "Likes:"
-msgstr "Le gusta:"
-
-#: collective/facebook/wall/portlet/fbwall.py:69
+#: collective/facebook/wall/portlet/fbwall.py:77
 msgid "Maximum results"
-msgstr "Resultados máximos"
+msgstr "Número máximo de resultados"
 
-#: collective/facebook/wall/portlet/fbwall.py:76
+#: collective/facebook/wall/portlet/fbwall.py:84
 msgid "Only show posts made by the wall owner."
 msgstr "Sólo mostrar mensajes hechos por el dueño del muro."
 
-#: collective/facebook/wall/portlet/fbwall.py:75
+#: collective/facebook/wall/portlet/fbwall.py:83
 msgid "Show only from owner"
-msgstr "Sólo mostrar del dueño"
+msgstr "Sólo mostrar mensajes del dueño"
 
-#: collective/facebook/wall/portlet/fbwall.py:54
+#: collective/facebook/wall/portlet/fbwall.py:62
 msgid "The header for the portlet. Leave empty for none."
 msgstr "La cabecera del portlet. Dejar vacío para ninguna."
 
-#: collective/facebook/wall/portlet/fbwall.py:70
+#: collective/facebook/wall/portlet/fbwall.py:78
 msgid "The maximum results number."
 msgstr "El número de resultados máximos."
 
-#: collective/facebook/wall/portlet/fbwall.pt:96
+#: collective/facebook/wall/portlet/fbwall.pt:88
 msgid "View the full feed in Facebook"
 msgstr "Ir al flujo completo en Facebook"
 
-#: collective/facebook/wall/portlet/fbwall.py:62
+#: collective/facebook/wall/portlet/fbwall.py:70
 msgid "Wall ID"
 msgstr "ID del muro"
 
-#: collective/facebook/wall/portlet/fbwall.py:58
+#: collective/facebook/wall/portlet/fbwall.py:66
 msgid "Which Facebook account to use."
 msgstr "Qué cuenta de Facebook utilizar."
-
 

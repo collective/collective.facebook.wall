@@ -4,11 +4,11 @@ I18NDOMAIN="collective.facebook.wall"
 
 # Synchronise the templates and scripts with the .pot.
 # All on one line normally:
-i18ndude rebuild-pot --pot src/collective/facebook/wall/locales/${I18NDOMAIN}.pot \
+bin/i18ndude rebuild-pot --pot src/collective/facebook/wall/locales/${I18NDOMAIN}.pot \
     --create ${I18NDOMAIN} \
-   .
+    src/collective/facebook/wall
 
 # Synchronise the resulting .pot with all .po files
 for po in src/collective/facebook/wall/locales/*/LC_MESSAGES/${I18NDOMAIN}.po; do
-    i18ndude sync --pot src/collective/facebook/wall/locales/${I18NDOMAIN}.pot $po
+    bin/i18ndude sync --pot src/collective/facebook/wall/locales/${I18NDOMAIN}.pot $po
 done
