@@ -18,7 +18,10 @@ from zope.schema.interfaces import IContextSourceBinder
 from collective.facebook.wall import _
 from collective.facebook.wall.config import GRAPH_URL
 
+from zope.security import checkPermission
+
 from plone.memoize import ram
+from time import time
 
 import DateTime
 import json
@@ -47,7 +50,9 @@ alsoProvides(FacebookAccounts, IContextSourceBinder)
 
 
 def cache_key_simple(func, var):
-    return hashlib.md5(var.context.id).hexdigest()
+    #let's memoize for 20 minutes or if any value of the portlet is modified
+    timeout = time() // (60 * 20)
+    return (timeout, var.data.wall_id, var.data.only_self, var.data.max_results)
 
     
 class IFacebookWallPortlet(IPortletDataProvider):
@@ -138,10 +143,19 @@ class Renderer(base.Renderer):
         """
         return self.data.header
 
+    def canEdit(self):
+        return checkPermission('cmf.ModifyPortalContent', self.context)
+        
+    def isValidAccount(self):
+        registry = getUtility(IRegistry)
+        accounts = registry.get('collective.facebook.accounts', None)
+
+        return self.data.fb_account in accounts
+        
     @ram.cache(cache_key_simple)
     def getSearchResults(self):
         registry = getUtility(IRegistry)
-        accounts = registry['collective.facebook.accounts']
+        accounts = registry.get('collective.facebook.accounts', None)
 
         result = []
         if self.data.fb_account in accounts:
@@ -164,7 +178,8 @@ class Renderer(base.Renderer):
 
                 # Now, let's iterate on each result until we have the amount
                 # we wanted
-                while len(result) < self.data.max_results:
+                while ('paging' in query_result and
+                       len(result) < self.data.max_results):
                     try:
                         post = query_result['data'].pop()
                     except IndexError:
@@ -172,7 +187,6 @@ class Renderer(base.Renderer):
                         # next page of results
                         url = query_result['paging']['next']
                         query_result = json.load(urllib.urlopen(url))
-                        post = query_result['data'].pop()
 
                     if post['from']['id'] == uid:
                         result.append(post)

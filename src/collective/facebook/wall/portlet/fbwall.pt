@@ -1,96 +1,108 @@
 <dl class="portlet facebookWallPortlet"
     i18n:domain="collective.twitter.search">
 
-    <dt class="portletHeader" tal:condition="view/getHeader">
-        <span class="portletTopLeft"></span>
-        <span tal:content="view/getHeader" />
-        <span class="portletTopRight"></span>
-    </dt>
+    <tal:valid condition="view/isValidAccount">
+    
+        <dt class="portletHeader" tal:condition="view/getHeader">
+            <span class="portletTopLeft"></span>
+            <span tal:content="view/getHeader" />
+            <span class="portletTopRight"></span>
+        </dt>
 
-    <dd class="portletItem odd"
-        tal:define="results view/getSearchResults;
-                    toLocalizedTime nocall:context/@@plone/toLocalizedTime;"
-        tal:condition="results">
-        <div class="results-wrapper">
-            <div class="result-item" tal:repeat="result results">
+        <dd class="portletItem odd"
+            tal:define="results view/getSearchResults;
+                        toLocalizedTime nocall:context/@@plone/toLocalizedTime;"
+            tal:condition="results">
+            <div class="results-wrapper">
+                <div class="result-item" tal:repeat="result results">
 
-                <tal:block define="type_link python: result.get('type') == u'link';
-                                   type_status python: result.get('type') == u'status';
-                                   loc_date python: toLocalizedTime(view.getDate(result.get('created_time')), long_format=1);
-                                   link_url python:result.get('link', '');
-                                   link_name python:result.get('name', '');
-                                   status_msg python:result.get('message', '');
-                                   comments python:result.get('comments', {});
-                                   comments_count python:comments.get('count', 0);
-                                   likes python:result.get('likes', {});
-                                   likes_count python:likes.get('count', 0);">
+                    <tal:block define="type_link python: result.get('type') == u'link';
+                                    type_status python: result.get('type') == u'status';
+                                    loc_date python: toLocalizedTime(view.getDate(result.get('created_time')), long_format=1);
+                                    link_url python:result.get('link', '');
+                                    link_name python:result.get('name', '');
+                                    status_msg python:result.get('message', '');
+                                    comments python:result.get('comments', {});
+                                    comments_count python:comments.get('count', 0);
+                                    likes python:result.get('likes', {});
+                                    likes_count python:likes.get('count', 0);">
 
-                    <div tal:condition="type_link" class="statusUpdate link">
-                    
-                        <span class="date_and_time" tal:content="loc_date" />
-                        
-                        <div class="result_content">
-                            <a href="#"
-                               tal:attributes="href link_url"
-                               tal:content="link_name">
-                            </a>
+                        <div tal:condition="type_link" class="statusUpdate link">
+
+                            <span class="date_and_time" tal:content="loc_date" />
+
+                            <div class="result_content">
+                                <a href="#"
+                                tal:attributes="href link_url"
+                                tal:content="link_name">
+                                </a>
+                            </div>
+                            <p class="like">
+                                <span i18n:translate=""
+                                    i18n:domain="collective.facebook.wall">
+
+                                <span tal:content="likes_count"
+                                    i18n:name="likes_count"/> people like this.
+                                </span>
+                            </p>
+                            <p class="comments">
+                                <span i18n:translate=""
+                                    i18n:domain="collective.facebook.wall">
+
+                                <span tal:content="comments_count"
+                                    i18n:name="comments"/> comments.
+                                </span>
+                            </p>
                         </div>
-                        <p class="like">
-                            <span i18n:translate=""
-                                  i18n:domain="collective.facebook.wall">
 
-                            <span tal:content="likes_count"
-                                  i18n:name="likes_count"/> people like this.
-                            </span>
-                        </p>                    
-                        <p class="comments">
-                            <span i18n:translate=""
-                                  i18n:domain="collective.facebook.wall">
+                        <div tal:condition="type_status" class="statusUpdate status">
 
-                            <span tal:content="comments_count"
-                                  i18n:name="comments"/> comments.
-                            </span>
-                        </p>
-                    </div>
+                            <span class="date_and_time" tal:content="loc_date" />
 
-                    <div tal:condition="type_status" class="statusUpdate status">
-                    
-                        <span class="date_and_time" tal:content="loc_date" />
+                            <div class="result_content">
+                                <p tal:content="status_msg"></p>
+                            </div>
+                            <p class="like">
+                                <span i18n:translate=""
+                                    i18n:domain="collective.facebook.wall">
 
-                        <div class="result_content">                    
-                            <p tal:content="status_msg"></p>
+                                <span tal:content="likes_count"
+                                    i18n:name="likes_count"/> people like this.
+                                </span>
+                            </p>
+                            <p class="comments">
+                                <span i18n:translate=""
+                                    i18n:domain="collective.facebook.wall">
+
+                                <span tal:content="comments_count"
+                                    i18n:name="comments"/> comments.
+                                </span>
+                            </p>
                         </div>
-                        <p class="like">
-                            <span i18n:translate=""
-                                  i18n:domain="collective.facebook.wall">
-
-                            <span tal:content="likes_count"
-                                  i18n:name="likes_count"/> people like this.
-                            </span>
-                        </p>                    
-                        <p class="comments">
-                            <span i18n:translate=""
-                                  i18n:domain="collective.facebook.wall">
-
-                            <span tal:content="comments_count"
-                                  i18n:name="comments"/> comments.
-                            </span>
-                        </p>
-                    </div>
-                </tal:block>
+                    </tal:block>
+                </div>
             </div>
-        </div>
-    </dd>
+        </dd>
 
-    <dd class="portletFooter">
-        <span class="portletBottomLeft"></span>
-        <a href="#" tal:attributes="href view/getFacebookLink" target="_blank">
-            <span i18n:translate=""
-                  i18n:domain="collective.facebook.wall">
-                  View the full feed in Facebook
-            </span>
-        </a>
-        <span class="portletBottomRight"></span>
-    </dd>
+        <dd class="portletFooter">
+            <span class="portletBottomLeft"></span>
+            <a href="#" tal:attributes="href view/getFacebookLink" target="_blank">
+                <span i18n:translate=""
+                    i18n:domain="collective.facebook.wall">
+                    View the full feed in Facebook
+                </span>
+            </a>
+            <span class="portletBottomRight"></span>
+        </dd>
+
+    </tal:valid>
+    
+    <tal:invalid condition="not:view/isValidAccount">
+        <p tal:condition="view/canEdit"
+           i18n:translate="">
+            The account used to display content in this portlet appears to be
+            invalid
+        </p>
+    </tal:invalid>
 
 </dl>
