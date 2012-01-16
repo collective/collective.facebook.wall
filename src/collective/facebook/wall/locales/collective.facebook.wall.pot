@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2011-12-24 15:24+0000\n"
+"POT-Creation-Date: 2012-01-16 22:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.facebook.wall\n"
 
-#: collective/facebook/wall/portlet/fbwall.pt:50
+#: collective/facebook/wall/portlet/fbwall.pt:52
 msgid "${comments} comments."
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.pt:42
+#: collective/facebook/wall/portlet/fbwall.pt:44
 msgid "${likes_count} people like this."
 msgstr ""
 
@@ -29,52 +29,56 @@ msgstr ""
 msgid "A portlet to show a wall feed from Facebook"
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:65
+#: collective/facebook/wall/portlet/fbwall.py:70
 msgid "Facebook account"
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:120
+#: collective/facebook/wall/portlet/fbwall.py:125
 #: collective/facebook/wall/profiles/default/portlets.xml
 msgid "Facebook wall Portlet"
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:61
+#: collective/facebook/wall/portlet/fbwall.py:66
 msgid "Header"
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:71
+#: collective/facebook/wall/portlet/fbwall.py:76
 msgid "ID for the wall you are trying to fetch from. More info in: https://developers.facebook.com/docs/reference/api/"
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:77
+#: collective/facebook/wall/portlet/fbwall.py:82
 msgid "Maximum results"
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:84
+#: collective/facebook/wall/portlet/fbwall.py:89
 msgid "Only show posts made by the wall owner."
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:83
+#: collective/facebook/wall/portlet/fbwall.py:88
 msgid "Show only from owner"
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:62
+#: collective/facebook/wall/portlet/fbwall.pt:101
+msgid "The Facebook account used to display content in this portlet appears to be invalid"
+msgstr ""
+
+#: collective/facebook/wall/portlet/fbwall.py:67
 msgid "The header for the portlet. Leave empty for none."
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:78
+#: collective/facebook/wall/portlet/fbwall.py:83
 msgid "The maximum results number."
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.pt:88
+#: collective/facebook/wall/portlet/fbwall.pt:90
 msgid "View the full feed in Facebook"
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:70
+#: collective/facebook/wall/portlet/fbwall.py:75
 msgid "Wall ID"
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:66
+#: collective/facebook/wall/portlet/fbwall.py:71
 msgid "Which Facebook account to use."
 msgstr ""
 

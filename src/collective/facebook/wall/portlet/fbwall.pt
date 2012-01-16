@@ -99,9 +99,10 @@
     
     <tal:invalid condition="not:view/isValidAccount">
         <p tal:condition="view/canEdit"
-           i18n:translate="">
-            The account used to display content in this portlet appears to be
-            invalid
+           i18n:translate=""
+           i18n:domain="collective.facebook.wall">
+            The Facebook account used to display content in this portlet
+            appears to be invalid
         </p>
     </tal:invalid>
 
