@@ -3,5 +3,6 @@
   <version>1000</version>
  <dependencies>
   <dependency>profile-collective.facebook.accounts:default</dependency>
+  <dependency>profile-collective.prettydate:default</dependency>
  </dependencies>
 </metadata>

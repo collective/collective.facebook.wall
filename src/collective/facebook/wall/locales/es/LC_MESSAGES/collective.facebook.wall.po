@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: collective.facebook.wall\n"
-"POT-Creation-Date: 2012-01-16 22:45+0000\n"
-"PO-Revision-Date: 2012-01-16 19:45-0300\n"
+"POT-Creation-Date: 2012-01-22 05:54+0000\n"
+"PO-Revision-Date: 2012-01-22 02:55-0300\n"
 "Last-Translator: Franco Pellegrini\n"
 "Language-Team: Spanish <>\n"
 "MIME-Version: 1.0\n"
@@ -29,20 +29,20 @@ msgstr "A ${likes_count} personas les gusta esto."
 msgid "A portlet to show a wall feed from Facebook"
 msgstr "Un portlet para mostrar mensajes en un muro de Facebook"
 
-#: collective/facebook/wall/portlet/fbwall.py:70
+#: collective/facebook/wall/portlet/fbwall.py:71
 msgid "Facebook account"
 msgstr "Cuenta de Facebook"
 
-#: collective/facebook/wall/portlet/fbwall.py:125
+#: collective/facebook/wall/portlet/fbwall.py:135
 #: collective/facebook/wall/profiles/default/portlets.xml
 msgid "Facebook wall Portlet"
 msgstr "Portlet de muro de Facebook"
 
-#: collective/facebook/wall/portlet/fbwall.py:66
+#: collective/facebook/wall/portlet/fbwall.py:67
 msgid "Header"
 msgstr "Cabecera"
 
-#: collective/facebook/wall/portlet/fbwall.py:76
+#: collective/facebook/wall/portlet/fbwall.py:77
 msgid ""
 "ID for the wall you are trying to fetch from. More info in: "
 "https://developers.facebook.com/docs/reference/api/"
@@ -50,15 +50,23 @@ msgstr ""
 "ID del muro del que se está intentando obtener el flujo. Más información en: "
 "https://developers.facebook.com/docs/reference/api/"
 
-#: collective/facebook/wall/portlet/fbwall.py:82
+#: collective/facebook/wall/portlet/fbwall.py:83
 msgid "Maximum results"
 msgstr "Número máximo de resultados"
 
-#: collective/facebook/wall/portlet/fbwall.py:89
+#: collective/facebook/wall/portlet/fbwall.py:90
 msgid "Only show posts made by the wall owner."
 msgstr "Sólo mostrar mensajes hechos por el dueño del muro."
 
-#: collective/facebook/wall/portlet/fbwall.py:88
+#: collective/facebook/wall/portlet/fbwall.py:93
+msgid "Pretty dates"
+msgstr "Fechas mejoradas"
+
+#: collective/facebook/wall/portlet/fbwall.py:94
+msgid "Show dates in a pretty format (ie. '4 hours ago')."
+msgstr "Mostrar fechas en un formato mejorado (ej. 'hace 4 horas')."
+
+#: collective/facebook/wall/portlet/fbwall.py:89
 msgid "Show only from owner"
 msgstr "Sólo mostrar mensajes del dueño"
 
@@ -70,11 +78,11 @@ msgstr ""
 "La cuenta Facebook utilizada para mostrar el contenido en el portlet parece "
 "inválida"
 
-#: collective/facebook/wall/portlet/fbwall.py:67
+#: collective/facebook/wall/portlet/fbwall.py:68
 msgid "The header for the portlet. Leave empty for none."
 msgstr "La cabecera del portlet. Dejar vacío para ninguna."
 
-#: collective/facebook/wall/portlet/fbwall.py:83
+#: collective/facebook/wall/portlet/fbwall.py:84
 msgid "The maximum results number."
 msgstr "El número de resultados máximos."
 
@@ -82,11 +90,11 @@ msgstr "El número de resultados máximos."
 msgid "View the full feed in Facebook"
 msgstr "Ir al flujo completo en Facebook"
 
-#: collective/facebook/wall/portlet/fbwall.py:75
+#: collective/facebook/wall/portlet/fbwall.py:76
 msgid "Wall ID"
 msgstr "ID del muro"
 
-#: collective/facebook/wall/portlet/fbwall.py:71
+#: collective/facebook/wall/portlet/fbwall.py:72
 msgid "Which Facebook account to use."
 msgstr "Qué cuenta de Facebook utilizar."
 

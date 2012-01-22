@@ -31,6 +31,7 @@ setup(name='collective.facebook.wall',
       install_requires=[
         'setuptools',
         'collective.facebook.accounts',
+        'collective.prettydate',
         ],
       extras_require={
         'test': ['plone.app.testing'],

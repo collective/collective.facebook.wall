@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-01-16 22:45+0000\n"
+"POT-Creation-Date: 2012-01-22 05:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,32 +29,40 @@ msgstr ""
 msgid "A portlet to show a wall feed from Facebook"
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:70
+#: collective/facebook/wall/portlet/fbwall.py:71
 msgid "Facebook account"
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:125
+#: collective/facebook/wall/portlet/fbwall.py:135
 #: collective/facebook/wall/profiles/default/portlets.xml
 msgid "Facebook wall Portlet"
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:66
+#: collective/facebook/wall/portlet/fbwall.py:67
 msgid "Header"
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:76
+#: collective/facebook/wall/portlet/fbwall.py:77
 msgid "ID for the wall you are trying to fetch from. More info in: https://developers.facebook.com/docs/reference/api/"
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:82
+#: collective/facebook/wall/portlet/fbwall.py:83
 msgid "Maximum results"
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:89
+#: collective/facebook/wall/portlet/fbwall.py:90
 msgid "Only show posts made by the wall owner."
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:88
+#: collective/facebook/wall/portlet/fbwall.py:93
+msgid "Pretty dates"
+msgstr ""
+
+#: collective/facebook/wall/portlet/fbwall.py:94
+msgid "Show dates in a pretty format (ie. '4 hours ago')."
+msgstr ""
+
+#: collective/facebook/wall/portlet/fbwall.py:89
 msgid "Show only from owner"
 msgstr ""
 
@@ -62,11 +70,11 @@ msgstr ""
 msgid "The Facebook account used to display content in this portlet appears to be invalid"
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:67
+#: collective/facebook/wall/portlet/fbwall.py:68
 msgid "The header for the portlet. Leave empty for none."
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:83
+#: collective/facebook/wall/portlet/fbwall.py:84
 msgid "The maximum results number."
 msgstr ""
 
@@ -74,11 +82,11 @@ msgstr ""
 msgid "View the full feed in Facebook"
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:75
+#: collective/facebook/wall/portlet/fbwall.py:76
 msgid "Wall ID"
 msgstr ""
 
-#: collective/facebook/wall/portlet/fbwall.py:71
+#: collective/facebook/wall/portlet/fbwall.py:72
 msgid "Which Facebook account to use."
 msgstr ""
 

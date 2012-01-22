@@ -14,6 +14,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone.registry.interfaces import IRegistry
 from zope.schema.interfaces import IContextSourceBinder
+from collective.prettydate.interfaces import IPrettyDate
 
 from collective.facebook.wall import _
 from collective.facebook.wall.config import GRAPH_URL
@@ -89,6 +90,12 @@ class IFacebookWallPortlet(IPortletDataProvider):
                                description=_(u"Only show posts made by the wall owner."),
                                required=False)
 
+    pretty_date = schema.Bool(title=_(u'Pretty dates'),
+                              description=_(u"Show dates in a pretty format (ie. '4 hours ago')."),
+                              default=True,
+                              required=False)
+
+
 class Assignment(base.Assignment):
     """Portlet assignment.
 
@@ -103,19 +110,22 @@ class Assignment(base.Assignment):
     wall_id = u""
     max_results = 20
     only_self = False
+    pretty_date = True
     
     def __init__(self,
                  fb_account,
                  wall_id,
                  max_results,
                  header=u"",
-                 only_self = False):
+                 only_self=False,
+                 pretty_date=True):
                      
         self.header = header
         self.fb_account = fb_account
         self.wall_id = wall_id
         self.max_results = max_results
         self.only_self = only_self
+        self.pretty_date = pretty_date
 
     @property
     def title(self):
@@ -201,11 +211,16 @@ class Renderer(base.Renderer):
         return "https://www.facebook.com/%s" % self.data.wall_id
 
     def getDate(self, str_date):
-        # Returns human readable date for the tweet
-        date = DateTime.DateTime(str_date)
+        if self.data.pretty_date:
+            # Returns human readable date for the wall post
+            date_utility = getUtility(IPrettyDate)
+            date = date_utility.date(str_date)
+        else:
+            date = DateTime.DateTime(str_date)
 
         return date
-        
+
+
 class AddForm(base.AddForm):
     """Portlet add form.
 

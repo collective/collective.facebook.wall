@@ -18,7 +18,7 @@
 
                     <tal:block define="type_link python: result.get('type') == u'link';
                                     type_status python: result.get('type') == u'status';
-                                    loc_date python: toLocalizedTime(view.getDate(result.get('created_time')), long_format=1);
+                                    loc_date python: view.data.pretty_date and view.getDate(result.get('created_time')) or toLocalizedTime(view.getDate(result.get('created_time')), long_format=1);
                                     link_url python:result.get('link', '');
                                     link_name python:result.get('name', '');
                                     status_msg python:result.get('message', '');
