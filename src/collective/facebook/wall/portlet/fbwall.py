@@ -24,7 +24,8 @@ from zope.security import checkPermission
 from plone.memoize import ram
 from time import time
 
-import DateTime
+from DateTime import DateTime
+
 import json
 import urllib
 import hashlib
@@ -159,8 +160,16 @@ class Renderer(base.Renderer):
     def isValidAccount(self):
         registry = getUtility(IRegistry)
         accounts = registry.get('collective.facebook.accounts', None)
+        
+        if self.data.fb_account not in accounts:
+            return False
+        else:
+            if accounts[self.data.fb_account]['expires']:
+                expires = DateTime(accounts[self.data.fb_account]['expires'])
+                if expires and expires < DateTime():
+                    return False
 
-        return self.data.fb_account in accounts
+        return True
         
     @ram.cache(cache_key_simple)
     def getSearchResults(self):
@@ -202,7 +211,7 @@ class Renderer(base.Renderer):
                         result.append(post)
                     
             else:
-                result = query_result['data']
+                result = query_result.get('data')
 
         return result
 
@@ -216,7 +225,7 @@ class Renderer(base.Renderer):
             date_utility = getUtility(IPrettyDate)
             date = date_utility.date(str_date)
         else:
-            date = DateTime.DateTime(str_date)
+            date = DateTime(str_date)
 
         return date
 
