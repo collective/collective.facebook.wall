@@ -1,5 +1,5 @@
 <dl class="portlet facebookWallPortlet"
-    i18n:domain="collective.twitter.search">
+    i18n:domain="collective.facebook.wall">
 
     <tal:valid condition="view/isValidAccount">
     
