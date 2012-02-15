@@ -213,10 +213,11 @@ class Renderer(base.Renderer):
             logger.info("About to start getting results...")
             while ('paging' in query_result and
                     len(result) < self.data.max_results):
-                logger.info("%s results so far..."%len(result))
                 try:
                     post = query_result['data'].pop()
                 except IndexError:
+                    logger.info("%s results so far. Need to fetch some more..."
+                                                                  %len(result))
                     # If we are here, it means, we need to query for the
                     # next page of results
                     url = query_result['paging']['next']
