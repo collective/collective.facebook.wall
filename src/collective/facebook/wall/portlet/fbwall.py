@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from zope.interface import implements
 from zope.interface import alsoProvides
 
@@ -6,7 +7,7 @@ from plone.app.portlets.portlets import base
 
 from zope import schema
 from zope.component import getUtility
-from Products.CMFCore.utils import getToolByName
+
 from zope.formlib import form
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 
@@ -18,6 +19,7 @@ from collective.prettydate.interfaces import IPrettyDate
 
 from collective.facebook.wall import _
 from collective.facebook.wall.config import GRAPH_URL
+from collective.facebook.wall.config import PROJECTNAME
 
 from zope.security import checkPermission
 
@@ -28,7 +30,10 @@ from DateTime import DateTime
 
 import json
 import urllib
-import hashlib
+
+import logging
+
+logger = logging.getLogger(PROJECTNAME)
 
 def FacebookAccounts(context):
     registry = getUtility(IRegistry)
@@ -56,7 +61,7 @@ def cache_key_simple(func, var):
     timeout = time() // (60 * 20)
     return (timeout, var.data.wall_id, var.data.only_self, var.data.max_results)
 
-    
+
 class IFacebookWallPortlet(IPortletDataProvider):
     """A portlet
 
@@ -112,7 +117,7 @@ class Assignment(base.Assignment):
     max_results = 20
     only_self = False
     pretty_date = True
-    
+
     def __init__(self,
                  fb_account,
                  wall_id,
@@ -120,7 +125,7 @@ class Assignment(base.Assignment):
                  header=u"",
                  only_self=False,
                  pretty_date=True):
-                     
+
         self.header = header
         self.fb_account = fb_account
         self.wall_id = wall_id
@@ -144,7 +149,7 @@ class Renderer(base.Renderer):
     rendered, and the implicit variable 'view' will refer to an instance
     of this class. Other methods can be added and referenced in the template.
     """
-    
+
     render = ViewPageTemplateFile('fbwall.pt')
 
 
@@ -156,34 +161,40 @@ class Renderer(base.Renderer):
 
     def canEdit(self):
         return checkPermission('cmf.ModifyPortalContent', self.context)
-        
+
     def isValidAccount(self):
         registry = getUtility(IRegistry)
         accounts = registry.get('collective.facebook.accounts', None)
-        
+
         if self.data.fb_account not in accounts:
+            logger.info("The account '%s' is invalid."%self.data.fb_account)
             return False
         else:
+            logger.info("'%s' is a valid account."%self.data.fb_account)
             if accounts[self.data.fb_account]['expires']:
                 expires = DateTime(accounts[self.data.fb_account]['expires'])
                 if expires and expires < DateTime():
+                    logger.info("But it already expired...")
                     return False
 
         return True
-        
+
     @ram.cache(cache_key_simple)
     def getSearchResults(self):
+        logger.info("Going to Facebook to fetch results.")
         registry = getUtility(IRegistry)
         accounts = registry.get('collective.facebook.accounts', None)
 
         result = []
         if self.data.fb_account in accounts:
+            logger.info("Using account '%s'"%self.data.fb_account)
             access_token = accounts[self.data.fb_account]['access_token']
 
             wall = self.data.wall_id + '/feed'
             params = access_token + '&limit=%s' % self.data.max_results
             url = GRAPH_URL % (wall, params)
 
+            logger.info("URL: %s"%url)
             query_result = json.load(urllib.urlopen(url))
 
             # I wanted to do this using fql, but i couldn't
@@ -191,32 +202,38 @@ class Renderer(base.Renderer):
             # I managed to get this:
             # /fql?q=SELECT+created_time,message,comments,likes,action_links,message_tags+FROM+stream+WHERE+filter_key+=+'owner'+AND+source_id+=+[uid]&access_token=
             if self.data.only_self:
+                logger.info("Only get posts from self.")
                 # Let's get the ID for the wall owner
                 uurl = GRAPH_URL % (self.data.wall_id, access_token)
+                logger.info("URL to get ID: %s"%uurl)
                 uid = json.load(urllib.urlopen(uurl))['id']
 
-                # Now, let's iterate on each result until we have the amount
-                # we wanted
-                while ('paging' in query_result and
-                       len(result) < self.data.max_results):
-                    try:
-                        post = query_result['data'].pop()
-                    except IndexError:
-                        # If we are here, it means, we need to query for the
-                        # next page of results
-                        url = query_result['paging']['next']
-                        query_result = json.load(urllib.urlopen(url))
+            # Now, let's iterate on each result until we have the amount
+            # we wanted
+            logger.info("About to start getting results...")
+            while ('paging' in query_result and
+                    len(result) < self.data.max_results):
+                logger.info("%s results so far..."%len(result))
+                try:
+                    post = query_result['data'].pop()
+                except IndexError:
+                    # If we are here, it means, we need to query for the
+                    # next page of results
+                    url = query_result['paging']['next']
+                    logger.info("Next URL: %s"%url)
+                    query_result = json.load(urllib.urlopen(url))
 
+                if self.data.only_self:
                     if post['from']['id'] == uid:
                         result.append(post)
-                    
-            else:
-                result = query_result.get('data')
+                else:
+                    result.append(post)
 
+        logger.info("Done. returning %s results"%len(result))
         return result
 
     def getFacebookLink(self):
-                    
+
         return "https://www.facebook.com/%s" % self.data.wall_id
 
     def getDate(self, str_date):
